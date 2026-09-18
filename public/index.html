@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>/shor — Control Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="gate is-open" id="gate">
+  <div class="gate__card">
+    <p class="gate__eyebrow">/shor</p>
+    <h1 class="gate__title">Control Room</h1>
+    <p class="gate__sub">Live server data. Enter the passcode.</p>
+    <input type="password" id="gateInput" class="gate__input" placeholder="passcode" autocomplete="off">
+    <p class="gate__msg" id="gateMsg">wrong passcode</p>
+    <button class="btn btn--primary gate__unlock" id="gateUnlock">unlock</button>
+  </div>
+</div>
+
+<div class="cr" id="cr">
+  <aside class="cr__side">
+    <div class="cr__brand"><span class="cr__brand-dot"></span><b>/shor</b><span>control room</span></div>
+    <ul class="cr__nav" id="crNav">
+      <li><button data-sec="overview" class="is-active"><span class="ic">#</span>Overview</button></li>
+      <li><button data-sec="voice"><span class="ic">#</span>Voice</button></li>
+      <li><button data-sec="roles"><span class="ic">#</span>Roles</button></li>
+      <li><button data-sec="mod"><span class="ic">#</span>Moderation</button></li>
+      <li><button data-sec="announce"><span class="ic">#</span>Announce</button></li>
+    </ul>
+    <div class="cr__side-foot"><button class="cr__lock-btn" id="lockBtn">lock</button></div>
+  </aside>
+
+  <main class="cr__main">
+    <div class="cr__topbar">
+      <h2 id="topTitle">Overview</h2>
+      <div class="cr__clock"><span class="live" id="liveDot">live</span></div>
+    </div>
+
+    <div class="cr__body">
+      <section class="cr__section" id="sec-overview">
+        <div class="cr__stats" id="statCards"></div>
+        <div class="cr__cols" style="margin-top:1px;">
+          <div class="cr__panel"><h4>Activity feed</h4><ul class="feed" id="feed"></ul></div>
+          <div class="cr__panel"><h4>Top channels (since bot started)</h4><div class="barlist" id="topChannels"></div></div>
+        </div>
+        <div class="cr__panel" style="margin-top:1px;"><h4>Member growth (real, hourly snapshots)</h4><div id="growthChart"></div></div>
+      </section>
+
+      <section class="cr__section" id="sec-voice" hidden>
+        <div class="cr__panel"><div class="vc-list" id="vcList"></div></div>
+      </section>
+
+      <section class="cr__section" id="sec-roles" hidden>
+        <div class="cr__panel"><div class="roles" id="rolesList"></div></div>
+      </section>
+
+      <section class="cr__section" id="sec-mod" hidden>
+        <div class="cr__panel"><h4 id="modCount">flagged messages</h4><div id="modQueue"></div></div>
+      </section>
+
+      <section class="cr__section" id="sec-announce" hidden>
+        <div class="cr__panel composer" style="max-width:560px;">
+          <h4>Send a real announcement</h4>
+          <select id="announceChannel"></select>
+          <textarea id="announceText" placeholder="what's happening..."></textarea>
+          <button class="btn btn--primary" id="announceSend">send to Discord</button>
+        </div>
+        <div class="cr__panel" style="max-width:560px;margin-top:1px;">
+          <h4>Real invite link</h4>
+          <div class="invite-row">
+            <input type="text" id="inviteOut" readonly value="click generate →">
+            <button class="btn btn--ghost" id="inviteGen">generate</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="app.js"></script>
+</body>
+</html>
